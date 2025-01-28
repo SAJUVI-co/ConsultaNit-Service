@@ -1,5 +1,6 @@
 import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { LoggerMiddleware } from './logger/logger.middleware';
+import { ConsultaModule } from './consulta/consulta.module';
 
 class LoggerModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
@@ -8,6 +9,6 @@ class LoggerModule implements NestModule {
 }
 
 @Module({
-  imports: [LoggerModule],
+  imports: [LoggerModule, ConsultaModule],
 })
 export class AppModule {}
