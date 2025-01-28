@@ -1,6 +1,13 @@
-import { Module } from '@nestjs/common';
+import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
+import { LoggerMiddleware } from './logger/logger.middleware';
+
+class LoggerModule implements NestModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer.apply(LoggerMiddleware).forRoutes('*');
+  }
+}
 
 @Module({
-  imports: [],
+  imports: [LoggerModule],
 })
 export class AppModule {}
