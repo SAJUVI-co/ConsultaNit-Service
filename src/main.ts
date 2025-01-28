@@ -12,6 +12,6 @@ async function bootstrap() {
   );
   await app.listen();
 
-  Logger.log(`Running ConusultaNits-Service on ${PORT} port`);
+  Logger.log(`Running ConusultaNits-Service    `);
 }
 bootstrap();
