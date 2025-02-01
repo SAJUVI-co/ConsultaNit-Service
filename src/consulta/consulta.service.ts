@@ -1,5 +1,4 @@
 import { Injectable } from '@nestjs/common';
-// import { CreateConsultaDto } from './dto/create-consulta.dto';
 import { exec } from 'child_process';
 
 @Injectable()
@@ -18,15 +17,9 @@ export class ConsultaService {
     });
   }
 
-  findAll(data: string[]) {
-    data.forEach((nit) => {
-      console.log(nit);
-    });
-
-    return 'nit has been searched';
-  }
-
-  findOne(cc: string) {
-    return this.search_nit(cc); // QUEDA PENDIENTE VALIDAR EL ERROR DE ESLINT
+  async findOne(cc: string): Promise<string> {
+    const data = await this.search_nit(cc);
+    console.log(data);
+    return data; // QUEDA PENDIENTE VALIDAR EL ERROR DE ESLINT
   }
 }

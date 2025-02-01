@@ -49,6 +49,18 @@ Dim jsonData, id, dv, primerApellido, segundoApellido, primerNombre, segundoNomb
 ' Extrae el valor de cada campo
 id = IE.Document.getElementById("vistaConsultaEstadoRUT:formConsultaEstadoRUT:numNit").Value
 dv = IE.Document.getElementById("vistaConsultaEstadoRUT:formConsultaEstadoRUT:dv").innerText
+
+If dv = "" Then
+    Dim errorMessage
+    errorMessage = errorMessage & """error"": " & "{"
+    errorMessage = errorMessage & """type"": " & 404 & ","
+    errorMessage = errorMessage & """id"": " & id
+    errorMessage = errorMessage & "}"
+    WScript.Echo errorMessage
+    WScript.Quit
+End If
+
+
 primerApellido = IE.Document.getElementById("vistaConsultaEstadoRUT:formConsultaEstadoRUT:primerApellido").innerText
 segundoApellido = IE.Document.getElementById("vistaConsultaEstadoRUT:formConsultaEstadoRUT:segundoApellido").innerText
 primerNombre = IE.Document.getElementById("vistaConsultaEstadoRUT:formConsultaEstadoRUT:primerNombre").innerText
@@ -56,9 +68,6 @@ segundoNombre = IE.Document.getElementById("vistaConsultaEstadoRUT:formConsultaE
 razonSocial = IE.Document.getElementById("vistaConsultaEstadoRUT:formConsultaEstadoRUT:razonSocial").innerText
 fechaActual = Now
 estado = IE.Document.getElementById("vistaConsultaEstadoRUT:formConsultaEstadoRUT:estado").innerText
-
-IE.Quit
-Set IE = Nothing
 
 ' Construir el JSON
 jsonData = "{"
@@ -78,6 +87,11 @@ End if
 jsonData = jsonData & """fecha_actual"": """ & fechaActual & ""","
 jsonData = jsonData & """estado"": """ & estado & """"
 jsonData = jsonData & "}"
+
+
+IE.Quit
+Set IE = Nothing
+
 
 ' Enviar respuesta en json
 WScript.Echo jsonData

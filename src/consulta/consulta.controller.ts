@@ -1,20 +1,14 @@
 import { Controller } from '@nestjs/common';
 import { MessagePattern, Payload } from '@nestjs/microservices';
 import { ConsultaService } from './consulta.service';
+import { CONSULTANIT_HOST } from 'src/config/env.config';
 
 @Controller()
 export class ConsultaController {
   constructor(private readonly consultaService: ConsultaService) {}
-
-  @MessagePattern({ cmd: 'findOneNit' })
-  findAll(@Payload('cc') cc: string[]) {
-    console.log(this.consultaService.findAll(cc));
-    return 'todos han sido buscados';
-  }
-
-  @MessagePattern({ cmd: 'findVALl' })
+  @MessagePattern({ cmd: CONSULTANIT_HOST })
   findOne(@Payload('cc') cc: string) {
-    console.log(this.consultaService.findOne(cc));
-    return 'ha sido buscado';
+    const data = this.consultaService.findOne(cc);
+    return data;
   }
 }
