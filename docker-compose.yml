@@ -1,0 +1,8 @@
+services:
+  consultanit_service:
+    container_name: "consultaNit_Service_container"
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - ${CONSULTANIT_PORT}:${CONSULTANIT_PORT}

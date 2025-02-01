@@ -10,7 +10,7 @@ interface Envs {
 const schema = joi
   .object({
     CONSULTANIT_HOST: joi.string().required(),
-    CONSULTANIT_PORT: joi.string().trim().required(),
+    CONSULTANIT_PORT: joi.number().required(),
     CONSULTANIT_CMD: joi.string().required(),
   })
   .unknown(true);
