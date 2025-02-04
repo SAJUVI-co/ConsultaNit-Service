@@ -11,19 +11,28 @@ import { Observable } from 'rxjs';
  * Retorna una Promise que se resuelve con la salida del script o se rechaza si ocurre un error.
  */
 export class ConsultaService {
-  public search_nit = (cc: string): Promise<string> => {
+  private search_nit(cc: string): Promise<string> {
     return new Promise((resolve, reject) => {
-      exec(`cscript ../consulta_nit.vbs ${cc}`, (error, stdout, stderr) => {
-        if (error) {
-          reject(new Error(`Error ejecutando el script: ${error.message}`));
-        } else if (stderr) {
-          reject(new Error(`Error del script: ${stderr}`));
-        } else {
-          resolve(stdout.trim());
-        }
-      });
+      exec(
+        `cscript //nologo ./src/consulta/consulta_nit.vbs ${cc}`,
+        (error, stdout, stderr) => {
+          if (error) {
+            reject(new Error(`Error ejecutando el script: ${error.message}`));
+          } else if (stderr) {
+            reject(new Error(`Error del script: ${stderr}`));
+          } else {
+            resolve(stdout.trim()); // Solo devuelve el JSON limpio
+          }
+        },
+      );
     });
-  };
+  }
+
+  async findOne(cc: string): Promise<string> {
+    const data = await this.search_nit(cc);
+    console.log(data);
+    return data; // QUEDA PENDIENTE VALIDAR EL ERROR DE ESLINT
+  }
 
   /**
    * Método para iniciar el proceso de consulta masiva de NITs de forma progresiva.
