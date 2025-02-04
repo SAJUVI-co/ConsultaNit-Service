@@ -4,17 +4,16 @@ import { exec } from 'child_process';
 @Injectable()
 export class ConsultaService {
   private search_nit(cc: string): Promise<string> {
-    console.log(cc);
     return new Promise((resolve, reject) => {
       exec(
-        `cscript ./src/consulta/consulta_nit.vbs ${cc}`,
+        `cscript //nologo ./src/consulta/consulta_nit.vbs ${cc}`,
         (error, stdout, stderr) => {
           if (error) {
             reject(new Error(`Error ejecutando el script: ${error.message}`));
           } else if (stderr) {
             reject(new Error(`Error del script: ${stderr}`));
           } else {
-            resolve(stdout.trim());
+            resolve(stdout.trim()); // Solo devuelve el JSON limpio
           }
         },
       );
