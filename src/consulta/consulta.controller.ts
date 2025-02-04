@@ -13,7 +13,7 @@ export class ConsultaController {
   constructor(private readonly consultaService: ConsultaService) {}
   @MessagePattern({ cmd: CONSULTANIT_CMD_NIT })
   findOne(@Payload('cc') cc: string) {
-    const data = this.consultaService.search_nit(cc);
+    const data = this.consultaService.findOne(cc);
     return data;
   }
 
