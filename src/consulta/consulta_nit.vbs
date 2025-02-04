@@ -15,7 +15,7 @@ IE.Navigate "https://muisca.dian.gov.co/WebRutMuisca/DefConsultaEstadoRUT.faces"
 
 ' Esperar a que la página cargue completamente
 Do While IE.Busy Or IE.ReadyState <> 4
-    WScript.Sleep 10
+    WScript.Sleep 20
 Loop
 
 ' Buscar el campo de entrada por el atributo "name" y establecer el valor
@@ -44,7 +44,7 @@ End If
 
 ' Esperar a que la página cargue completamente
 Do While IE.Busy Or IE.ReadyState <> 4
-    WScript.Sleep 10
+    WScript.Sleep 20
 Loop
 
 ' Extraer los valores necesarios y construir el JSON
