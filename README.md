@@ -1,5 +1,7 @@
 # ConsultaNit Service
 
+### Este servicio ha sido deprecado
+
 Este es un servicio basado en VBS, cuyo objetivo es realizar consultas a [https://muisca.dian.gov.co/WebRutMuisca/DefConsultaEstadoRUT.faces](https://muisca.dian.gov.co/WebRutMuisca/DefConsultaEstadoRUT.faces), validar y retornar la información.
 
 ## Licencia
